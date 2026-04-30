@@ -1,243 +1,262 @@
-# Clipboard Security Monitoring & Threat Detection System
+# Secure clip defender #
 
 ---
 
 ## **1. Problem Statement**
 
-Modern computing systems rely heavily on clipboard operations for copying and pasting sensitive information such as cryptocurrency wallet addresses, passwords, and financial data. However, the clipboard is an inherently insecure component because it operates without built-in validation, encryption, or integrity checks. This makes it vulnerable to silent manipulation by malware, browser extensions, or system-level attacks that can modify clipboard content after the user has copied it. In such cases, users remain completely unaware of the change and may unknowingly paste and submit compromised data, leading to financial loss, credential theft, or data leakage. The core issue is that the clipboard is implicitly trusted by the system despite lacking any security guarantees, creating a critical and often overlooked attack surface.
+Modern computing systems rely heavily on clipboard operations for copying and pasting sensitive information such as cryptocurrency wallet addresses, passwords, and f clipinancial data.
+
+However, the clipboard is an inherently insecure component because it operates without built-in validation, encryption, or integrity checks. This makes it vulnerable to silent manipulation by malware, browser extensions, or system-level attacks that can modify clipboard content after the user has copied it.
+
+In such cases, users remain completely unaware of the change and may unknowingly paste and submit compromised data, leading to financial loss, credential theft, or data leakage.
+
+The core issue is that the clipboard is implicitly trusted by the system despite lacking any security guarantees, creating a critical and often overlooked attack surface.
 
 ---
 
-2. Solution Overview
-2.1 Interface Layer
+## **2. Solution Overview**
 
-The system provides a user-facing interface through a desktop application and a simple monitoring mode.
-It allows the user to start, stop, and observe clipboard security activity in real time.
+### **Continuous Monitoring Loop**
 
-2.2 Clipboard Monitoring Layer
+#### **Activation**
+The application begins a continuous monitoring loop when the user opens the app and presses the Start button.
 
-The system continuously observes clipboard activity at the operating system level.
-Any change in clipboard content is detected immediately and forwarded for analysis.
+#### **Active State**
+The system enters an active state, which is visually indicated by a green screen.
 
-2.3 Data Filtering Layer
+#### **Repeated Execution**
+The application repeatedly checks clipboard activity at fixed time intervals.
 
-Incoming clipboard content is filtered to separate meaningful data from irrelevant or empty entries.
-Only potentially important information is considered for further evaluation.
-
-2.4 Sensitive Data Recognition Layer
-
-The system identifies whether clipboard content belongs to sensitive categories such as:
-
-Cryptocurrency wallet information
-Financial data
-Secure password-like content
-
-This enables early identification of high-risk clipboard usage.
-
-2.5 Specialized Recognition Modules
-
-Different detection units handle different types of sensitive information:
-
-Cryptocurrency recognition (Bitcoin, Ethereum formats)
-Financial data recognition (credit card structures)
-Credential-strength recognition for password-like patterns
-
-Each module focuses on a specific category of sensitive data.
-
-2.6 Risk Assessment Layer
-
-The system evaluates clipboard changes to determine whether they are:
-
-Normal updates
-Sensitive data exposure
-Suspicious modification of previously recognized data
-
-This layer determines the severity of the situation.
-
-2.7 Response and Recovery Layer
-
-When risk is detected, the system:
-
-Notifies the user in real time
-Allows restoration of previously trusted clipboard content
-Maintains a safe fallback state for recovery actions
-2.8 Logging and Audit Layer
-
-Security-related events are recorded for later review.
-This includes detected risks, clipboard changes, and recovery actions.
-Logs support traceability and post-event analysis.
-
-2.9 Security Design Layer
-
-The system is designed to operate locally on the user’s device.
-It avoids external transmission of clipboard data and focuses on preserving user privacy while providing real-time protection.
-
-<img width="818" height="1232" alt="RLN1Rfj04BqZyGzJHsfFZjgqlVGG1IzEGC8s0ZjMZXjsOs-3Tz7kMfLLzTyx2zY02ITcvZ7pPkQD_M0irVPuA7tlaztp0uUgf4BwdbKLM0Mlobfr02OqBwnG633lGbPKqmEKGd9xgZWeRVUg7v6ASSCh-F6rxzLKlZllpu4tfSKxtV6KCYRa3kumw7jVO3gTGhv-IUQvUnsaG" src="https://github.com/user-attachments/assets/2f1ced90-eb52-4952-a24e-214e9387ad89" />
+#### **Termination Condition**
+The monitoring loop continues running until the user explicitly stops the process.
 
 ---
 
-## **Step-by-Step Layered System Flow**
+### **Intelligent Change Detection**
+
+#### **Comparison Mechanism**
+The system compares the current clipboard content with the previously stored value.
+
+#### **No Change Handling**
+The application ignores the content if no change is detected.
+
+#### **Change Trigger**
+The system proceeds to further analysis only when a change is identified.
+
+#### **Efficiency**
+This approach ensures efficient processing and avoids unnecessary operations.
 
 ---
 
-## **Step 1: Initialization Layer (Monitoring Start)**
+### **Context-Aware Content Analysis**
 
-### **System Activation**
-The system begins operation when the user opens the application interface.
+#### **Content Evaluation**
+The application evaluates the type of content when a new clipboard item is detected.
 
-### **Monitoring Trigger**
-The user manually clicks the Start Monitoring button to activate the monitoring process.
+#### **High-Risk Identification**
+The system identifies cryptocurrency wallet addresses as high-risk data.
 
-### **System State Update**
-Once activated, the monitoring engine starts running internally, and the system status is updated to Active, indicating that it is ready to monitor clipboard activity.
+#### **Sensitive Data Detection**
+The application classifies bank card numbers and passwords as sensitive information.
 
-<img width="392" height="605" alt="Screenshot 2026-04-29 174017" src="https://github.com/user-attachments/assets/3a5ffd7f-5e4b-40ab-8af0-4393958cf7ec" />
-
----
-
-## **Step 2: Clipboard Access Layer (Data Acquisition)**
-
-### **Clipboard Connection**
-The system establishes a connection with the operating system clipboard to access copied data.
-
-### **Content Retrieval**
-The current clipboard content is read in real time whenever an update occurs.
-
-### **Content Validation**
-The system checks whether the clipboard contains valid and usable data before processing it further.
-
-### **Temporary Storage**
-If valid data is found, it is temporarily stored for comparison with future clipboard changes.
-
-<img width="392" height="623" alt="Screenshot 2026-04-29 174038" src="https://github.com/user-attachments/assets/fc8f27a7-b82f-4a1f-bd01-cccb35452eb1" />
+#### **Non-Critical Handling**
+The system ignores non-sensitive content and continues monitoring without interruption.
 
 ---
 
-## **Step 3: Change Detection Layer**
+### **Wallet Address Tracking and Baseline Establishment**
 
-### **Previous State Tracking**
-The system keeps track of the previously stored clipboard content for comparison purposes.
+#### **First Detection**
+The system treats the first detected wallet address as a trusted reference.
 
-### **New Data Capture**
-Whenever the clipboard is updated, the new content is captured by the system.
+#### **Secure Storage**
+The application securely stores this address for future comparisons.
 
-### **Comparison Process**
-The system compares the newly captured content with the previously stored version.
+#### **User Notification**
+The system notifies the user that a wallet address has been detected.
 
-### **Change Identification**
-If any difference is detected between the two values, the system identifies it as a clipboard change event.
-
-<img width="557" height="565" alt="Screenshot 2026-04-29 174113" src="https://github.com/user-attachments/assets/6bc1eee0-b420-43f1-b5b9-90cda84c8919" />
+#### **Alert Mode**
+The application enters a heightened monitoring state for wallet integrity.
 
 ---
 
-## **Step 4: Content Analysis Layer**
+### **Swap Attack Detection and Response**
 
-### **Pattern Scanning**
-The system scans the changed clipboard content to identify known patterns.
+#### **Address Comparison**
+The system compares newly detected wallet addresses with the stored reference.
 
-### **Cryptocurrency Detection**
-It checks whether the content matches Bitcoin or Ethereum wallet address formats.
+#### **Threat Detection**
+The application identifies a mismatch as a potential swap attack.
 
-### **Sensitive Data Detection**
-The system also checks for sensitive information such as passwords or financial details.
+#### **Visual Alert**
+The system immediately displays a red warning screen with clear alerts.
 
-### **Content Classification**
-Based on the detected patterns, the system classifies the clipboard content into specific categories.
+#### **Information Display**
+The application shows both the original and altered wallet addresses to the user.
 
-<img width="930" height="589" alt="Screenshot 2026-04-29 174130" src="https://github.com/user-attachments/assets/14199538-8a17-402f-a7f6-eb4c9793d076" />
-
----
-
-## **Step 5: Crypto Tracking Layer**
-
-### **Address Identification**
-When a cryptocurrency address is detected, the system isolates it for tracking.
-
-### **Original Storage**
-The original crypto address is securely stored so that it can be used for future comparison.
-
-### **Continuous Monitoring**
-The system continuously monitors the stored address to ensure it is not modified without authorization.
-
-### **Integrity Protection**
-This layer ensures that the original cryptocurrency address remains intact and unaltered.
-
-<img width="555" height="545" alt="Screenshot 2026-04-29 174148" src="https://github.com/user-attachments/assets/3a5e5da5-2eee-4f53-b3e9-3147b02f73ac" />
+#### **Recovery Option**
+The system activates the Restore option to allow immediate correction.
 
 ---
 
-## **Step 6: Hijack Detection Layer**
+### **Instant Recovery Mechanism**
 
-### **Data Comparison**
-The system compares the originally stored address with the newly detected clipboard value.
+#### **Restore Action**
+The application replaces the fake address with the original stored address when the Restore button is pressed.
 
-### **Mismatch Detection**
-If any difference is found between the two values, it is identified as a mismatch.
+#### **Confirmation**
+The system confirms the successful restoration through a visual message.
 
-### **Threat Flagging**
-The system flags this mismatch as a potential clipboard hijacking attempt.
+#### **Safe State**
+The application returns the interface to a safe green state.
 
-### **Risk Classification**
-The detected event is evaluated and classified based on its severity level.
-
-<img width="401" height="607" alt="Screenshot 2026-04-29 174249" src="https://github.com/user-attachments/assets/32195cf4-b5cf-4fc7-8cd7-66603a6935ff" />
+#### **Continuation**
+The system resumes continuous monitoring without restarting the process.
 
 ---
 
-## **Step 7: Alert and Notification Layer**
+### **Logging and Session Termination**
 
-### **Warning Generation**
-When a threat is detected, the system generates a warning message.
+#### **Event Logging**
+The application records all detected incidents with timestamps and relevant details.
 
-### **User Notification**
-This warning is displayed to the user in real time to inform them of the risk.
+#### **Audit Trail**
+The system maintains logs for future review and auditing purposes.
 
-### **Status Update**
-The system updates its state to indicate that an alert condition has been triggered.
+#### **Stop Condition**
+The application exits the monitoring loop when the user stops the process.
 
-### **Risk Communication**
-The system clearly communicates the possibility of clipboard tampering to the user.
+#### **Data Safety**
+The system ensures that all records are safely stored before termination.
 
-<img width="270" height="634" alt="Screenshot 2026-04-29 174310" src="https://github.com/user-attachments/assets/942e09c9-58c2-4c7c-83fc-c4d5fb5af870" />
+<img width="1076" height="945" alt="TLHDRzf04BqZyHz6oeKW5PKGAHAMsX0Ir5CQuGEAbCl4E-0LPdSrkyIYf_w8_iB-aivYcpZKkUtEUvut7szzwmDosE-AVizljN78k8CxpBORjdkZvhQm36Mk0xK9iopeDnqETvOLSKMwcDnStrmlEcbd-IuU9ekhnNqNTM5DIFKlWl7N3p2pBJ_LcLkZTD3MfE5G42YDEucq6" src="https://github.com/user-attachments/assets/a72a4756-f2ab-401e-ab7d-a85d465d9eb3" />
 
----
-
-## **Step 8: Restore Mechanism Layer**
-
-### **Restore Activation**
-The system enables a restore option once a threat is detected.
-
-### **User Action**
-The user can manually trigger the restore process through the interface.
-
-### **Clipboard Recovery**
-The system replaces the modified clipboard content with the original safe version.
-
-### **System Reset**
-After restoration, the system returns to its normal monitoring state.
-
-<img width="526" height="637" alt="Screenshot 2026-04-29 174327" src="https://github.com/user-attachments/assets/c59b4153-c4b5-4b38-a099-0620cd7e58cc" />
 
 ---
 
-## **Step 9: Logging and Audit Layer**
-
-### **Event Capture**
-All important events during the process are captured by the system.
-
-### **Timestamping**
-Each event is recorded with an accurate timestamp for traceability.
-
-### **Secure Storage**
-The logged data is securely stored for future reference and analysis.
-
-### **UI Display**
-The system also displays log information in the user interface for transparency.
-
-<img width="352" height="737" alt="Screenshot 2026-04-29 174355" src="https://github.com/user-attachments/assets/9fdefa76-ee3c-4191-bdb1-e7e092d7f47f" />
+## **3. Step-by-Step Layered System Flow**
 
 ---
+
+### **1. Opening the Application**
+
+#### **Application Launch**
+When the user launches the application by double-clicking the program icon, a window appears on the screen.
+
+#### **Interface Initialization**
+The interface initializes by displaying four primary controls:
+- Start button  
+- Stop button  
+- Restore button  
+- View Records button  
+
+#### **Ready State**
+All buttons become visible and ready for interaction, allowing the user to control the monitoring process.
+
+<img width="938" height="602" alt="Screenshot 2026-04-30 150615" src="https://github.com/user-attachments/assets/2f096b90-9d8c-43ad-bd61-d80f233f12dc" />
+
+---
+
+### **2. Starting the Monitoring Process**
+
+#### **Activating Monitoring**
+When the user clicks the Start button, the application transitions into active monitoring mode.
+
+#### **UI State Changes**
+The Start button becomes inactive to prevent repeated clicks, while the Stop button becomes active. The screen visually indicates the active state by turning green, and a message appears confirming that monitoring has begun.
+
+#### **Background Execution**
+At this point, the application starts running silently in the background and checks clipboard activity every half second.
+
+<img width="1108" height="553" alt="Screenshot 2026-04-30 150636" src="https://github.com/user-attachments/assets/3f5f4ed2-8afb-4dcd-a858-72c98c34f9cd" />
+
+---
+
+### **3. Monitoring Clipboard Changes**
+
+#### **Periodic Wake Cycle**
+The application wakes up every 0.5 seconds to inspect the clipboard content.
+
+#### **Content Comparison**
+It reads the current clipboard data and compares it with the previously stored value.
+
+#### **No Change Scenario**
+If no change is detected, the application ignores the content and returns to a sleep state.
+
+#### **Change Detected**
+If a change is detected, the new content is forwarded for further analysis.
+
+<img width="649" height="678" alt="Screenshot 2026-04-30 150653" src="https://github.com/user-attachments/assets/a1a5faeb-803f-43c4-85da-69f74158216a" />
+
+---
+
+### **4. Identifying Sensitive Content**
+
+#### **Content Evaluation**
+When new clipboard content is detected, the application evaluates its type.
+
+#### **Crypto Wallet Detection**
+If the content matches a cryptocurrency wallet address, the application displays a warning and stores the address for future comparison.
+
+#### **Sensitive Data Detection**
+If the content resembles a bank card number or a password, the application shows a caution message advising the user to be careful.
+
+#### **Non-Sensitive Content**
+If the content does not match any sensitive category, the application continues monitoring silently without interruption.
+
+<img width="1259" height="738" alt="Screenshot 2026-04-30 150715" src="https://github.com/user-attachments/assets/b3b430be-4382-470c-99f1-9cab532555bd" />
+
+---
+
+### **5. Handling First-Time Wallet Detection**
+
+#### **First Encounter Logic**
+When a wallet address is detected for the first time, the application treats it as the original trusted address.
+
+#### **Secure Storage**
+It securely stores this address and informs the user that a wallet address has been detected.
+
+#### **Alert Mode Activation**
+The application also notifies the user that it will monitor for any potential changes or swaps. From this point onward, the system operates in a heightened alert state.
+
+<img width="558" height="827" alt="Screenshot 2026-04-30 150730" src="https://github.com/user-attachments/assets/1a351585-c6a8-464a-a404-94b2f62b67f8" />
+
+---
+
+### **6. Detecting Address Swapping Attacks**
+
+#### **Address Comparison**
+When a wallet address appears again in the clipboard, the application compares it with the stored original address.
+
+#### **Swap Detection**
+If the addresses do not match, the application identifies this as a potential swap attack.
+
+#### **Warning Mechanism**
+In response, the screen immediately turns red, and a prominent warning message is displayed. Both the original address and the detected address are shown to the user.
+
+#### **Recovery and Logging**
+The Restore button becomes active, allowing quick correction. Additionally, the incident is logged with the date, time, and both addresses for future reference.
+
+#### **Safe Scenario**
+If the addresses match, the application continues monitoring without interruption.
+
+<img width="1569" height="818" alt="Screenshot 2026-04-30 150749" src="https://github.com/user-attachments/assets/14635233-3169-4468-8cb2-773f2628d9d0" />
+
+---
+
+### **7. Restoring the Original Address**
+
+#### **User Action**
+When the user notices the warning and clicks the Restore button, the application replaces the fake address in the clipboard with the original stored address.
+
+#### **UI Feedback**
+The screen returns to a green state, and a confirmation message indicates that the address has been successfully restored.
+
+#### **System Reset**
+The Restore button becomes inactive again, and the application resumes silent monitoring.
+
+<img width="1058" height="802" alt="Screenshot 2026-04-30 150805" src="https://github.com/user-attachments/assets/0d4d7424-6cff-4cb5-9b75-16efd35e9fb7" />
+
 
 ## **User Interaction Flow Example**
 
