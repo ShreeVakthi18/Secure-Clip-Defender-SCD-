@@ -266,6 +266,8 @@ The user opens the tool and **starts monitoring** through the interface.
 <img width="1919" height="507" alt="Screenshot 2026-04-29 141420" src="https://github.com/user-attachments/assets/0f16db60-ac36-47c6-9b1a-6ef7b315c008" />
 
 
+## Case 1 (Crypto Wallet Detection)
+
 A user copies a **Bitcoin wallet address** from a trusted source.
 
 
@@ -306,6 +308,23 @@ The user remains **protected** from unknowingly sending data to an **attacker-co
 
 
 <img width="865" height="130" alt="Screenshot 2026-04-29 141801" src="https://github.com/user-attachments/assets/647b0c68-d3ca-466d-980a-a5d12c2f76e1" />
+
+## Case 2 (Sensitive content)
+
+The user copies a credit card number to the clipboard.
+
+<img width="818" height="188" alt="Screenshot 2026-04-30 162324" src="https://github.com/user-attachments/assets/a0e512ca-04a5-4113-98a7-e05002885020" />
+
+The application detects it as sensitive data and triggers a caution alert.
+
+<img width="1919" height="654" alt="Screenshot 2026-04-30 162230" src="https://github.com/user-attachments/assets/8a20a3ed-6975-40eb-9b6a-ccf6c78557b4" />
+
+## Case 3 (Non sensitive content)
+
+When the user copies non-sensitive content, the **application ignores it and continues monitoring.**
+
+<img width="808" height="154" alt="Screenshot 2026-04-30 162415" src="https://github.com/user-attachments/assets/959678e0-6e4c-47f8-b9e4-8fc0a5f7992b" />
+
 
 ---
 
