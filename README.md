@@ -212,49 +212,49 @@ The system also displays log information in the user interface for transparency.
 
 ## **User Interaction Flow Example**
 
-The user opens the tool and starts monitoring through the interface.
+The user opens the tool and **starts monitoring** through the interface.
 
 
 <img width="1919" height="507" alt="Screenshot 2026-04-29 141420" src="https://github.com/user-attachments/assets/0f16db60-ac36-47c6-9b1a-6ef7b315c008" />
 
 
-A user copies a Bitcoin wallet address from a trusted source.
+A user copies a **Bitcoin wallet address** from a trusted source.
 
 
 <img width="841" height="106" alt="Screenshot 2026-04-29 141746" src="https://github.com/user-attachments/assets/7bf22138-30cd-4c80-a3a5-79c7ff5d680a" />
 
 
-The system detects the cryptocurrency address and processes it through the detection pipeline.
+The system detects the **cryptocurrency address** and processes it through the detection pipeline.
 
 
 <img width="1639" height="483" alt="Screenshot 2026-04-29 141455" src="https://github.com/user-attachments/assets/faf31a71-5a4f-4fcc-a89b-14dcd0911b27" />
 
 
-A malicious program silently replaces the clipboard content with an attacker-controlled address.
+A **malicious program** silently replaces the clipboard content with an **attacker-controlled address**.
 
 
 <img width="837" height="239" alt="Screenshot 2026-04-29 141753" src="https://github.com/user-attachments/assets/e0270885-0057-443e-8c50-3802615c1ef5" />
 
 
-The clipboard listener immediately detects the change.
+The clipboard listener **immediately detects the change**.
 
 
 <img width="1907" height="496" alt="Screenshot 2026-04-29 141647" src="https://github.com/user-attachments/assets/fcdacf03-4561-47b8-80dc-23803f91ec2b" />
 
 
-The restore manager automatically replaces the malicious address with the original one.
+When the restore manager is **manually** triggered by the user, it replaces the **malicious address with the original one.**
 
 
 <img width="1050" height="356" alt="Screenshot 2026-04-29 141712" src="https://github.com/user-attachments/assets/8221fd9b-6d18-4bd8-a1e3-cbf8d89f5d02" />
 
 
-The event is logged for security auditing purposes.
+The event is **logged** for security auditing purposes.
 
 
 <img width="1050" height="356" alt="Screenshot 2026-04-29 141712" src="https://github.com/user-attachments/assets/905d2433-45c6-4f71-a61e-1d5a874fef9c" />
 
 
-The user remains protected from unknowingly sending data to an attacker-controlled destination.
+The user remains **protected** from unknowingly sending data to an **attacker-controlled destination.**
 
 
 <img width="865" height="130" alt="Screenshot 2026-04-29 141801" src="https://github.com/user-attachments/assets/647b0c68-d3ca-466d-980a-a5d12c2f76e1" />
