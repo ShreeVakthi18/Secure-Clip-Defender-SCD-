@@ -274,7 +274,7 @@ The Restore button becomes inactive again, and the application resumes silent mo
 <img width="841" height="106" alt="Screenshot 2026-04-29 141746" src="https://github.com/user-attachments/assets/7bf22138-30cd-4c80-a3a5-79c7ff5d680a" />
 
 
-The system detects the **cryptocurrency address** and processes it through the detection pipeline.
+### The system detects the **cryptocurrency address** and processes it through the detection pipeline.
 
 
 <img width="1639" height="483" alt="Screenshot 2026-04-29 141455" src="https://github.com/user-attachments/assets/faf31a71-5a4f-4fcc-a89b-14dcd0911b27" />
@@ -304,7 +304,7 @@ The system detects the **cryptocurrency address** and processes it through the d
 <img width="1050" height="356" alt="Screenshot 2026-04-29 141712" src="https://github.com/user-attachments/assets/905d2433-45c6-4f71-a61e-1d5a874fef9c" />
 
 
-The user remains **protected** from unknowingly sending data to an **attacker-controlled destination.**
+### The user remains **protected** from unknowingly sending data to an **attacker-controlled destination.**
 
 
 <img width="865" height="130" alt="Screenshot 2026-04-29 141801" src="https://github.com/user-attachments/assets/647b0c68-d3ca-466d-980a-a5d12c2f76e1" />
