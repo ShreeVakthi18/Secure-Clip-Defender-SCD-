@@ -8,40 +8,69 @@ Modern computing systems rely heavily on clipboard operations for copying and pa
 
 ---
 
-## **2. Solution Overview**
+2. Solution Overview
+2.1 Interface Layer
 
-### **2.1 Real-Time Monitoring Layer**
-The system continuously observes clipboard activity without interruption.  
-It detects any changes made to clipboard content immediately after a copy operation.
+The system provides a user-facing interface through a desktop application and a simple monitoring mode.
+It allows the user to start, stop, and observe clipboard security activity in real time.
 
-### **2.2 Content Validation Layer**
-The clipboard content is analyzed to determine whether it contains structured or sensitive data.  
-Irrelevant or non-sensitive data is filtered out to reduce processing overhead.
+2.2 Clipboard Monitoring Layer
 
-### **2.3 Pattern Detection Layer**
-The system scans clipboard data for predefined sensitive patterns.  
-It identifies cryptocurrency wallet addresses, credit card numbers, and password-like structures.
+The system continuously observes clipboard activity at the operating system level.
+Any change in clipboard content is detected immediately and forwarded for analysis.
 
-### **2.4 Specialized Detection Modules**
-Dedicated modules are used to validate different types of sensitive data.  
-The Bitcoin detector verifies BTC address formats.  
-The Ethereum detector validates ETH wallet structures.  
-The card detector applies numerical validation techniques such as checksum checks.  
-The password detector analyzes entropy and structural complexity.
+2.3 Data Filtering Layer
 
-### **2.5 Decision Engine**
-The system classifies clipboard content into risk categories such as safe, suspicious, or hijacked.  
-It determines the severity of detected anomalies and selects an appropriate response strategy.
+Incoming clipboard content is filtered to separate meaningful data from irrelevant or empty entries.
+Only potentially important information is considered for further evaluation.
 
-### **2.6 Response and Recovery Layer**
-The system generates real-time alerts to notify the user of potential clipboard tampering.  
-It automatically restores the original clipboard content when a hijack is detected.  
-All incidents are logged for auditing and forensic analysis.
+2.4 Sensitive Data Recognition Layer
 
-### **2.7 Security and Integrity Layer**
-The system ensures that sensitive clipboard data is never permanently stored.  
-It operates locally to minimize exposure of private user information.  
-It maintains integrity by preserving original clipboard states for recovery purposes.
+The system identifies whether clipboard content belongs to sensitive categories such as:
+
+Cryptocurrency wallet information
+Financial data
+Secure password-like content
+
+This enables early identification of high-risk clipboard usage.
+
+2.5 Specialized Recognition Modules
+
+Different detection units handle different types of sensitive information:
+
+Cryptocurrency recognition (Bitcoin, Ethereum formats)
+Financial data recognition (credit card structures)
+Credential-strength recognition for password-like patterns
+
+Each module focuses on a specific category of sensitive data.
+
+2.6 Risk Assessment Layer
+
+The system evaluates clipboard changes to determine whether they are:
+
+Normal updates
+Sensitive data exposure
+Suspicious modification of previously recognized data
+
+This layer determines the severity of the situation.
+
+2.7 Response and Recovery Layer
+
+When risk is detected, the system:
+
+Notifies the user in real time
+Allows restoration of previously trusted clipboard content
+Maintains a safe fallback state for recovery actions
+2.8 Logging and Audit Layer
+
+Security-related events are recorded for later review.
+This includes detected risks, clipboard changes, and recovery actions.
+Logs support traceability and post-event analysis.
+
+2.9 Security Design Layer
+
+The system is designed to operate locally on the user’s device.
+It avoids external transmission of clipboard data and focuses on preserving user privacy while providing real-time protection.
 
 <img width="818" height="1232" alt="RLN1Rfj04BqZyGzJHsfFZjgqlVGG1IzEGC8s0ZjMZXjsOs-3Tz7kMfLLzTyx2zY02ITcvZ7pPkQD_M0irVPuA7tlaztp0uUgf4BwdbKLM0Mlobfr02OqBwnG633lGbPKqmEKGd9xgZWeRVUg7v6ASSCh-F6rxzLKlZllpu4tfSKxtV6KCYRa3kumw7jVO3gTGhv-IUQvUnsaG" src="https://github.com/user-attachments/assets/2f1ced90-eb52-4952-a24e-214e9387ad89" />
 
